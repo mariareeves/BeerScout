@@ -2,7 +2,7 @@ import styles from './SearchBar.module.css'
 
 export default function SearchBar() {
     return (
-        <div className='search-bar'>
+        <div className={styles['search-bar']}>
             <h2 className="subtitle">Discover your favorite Brewery place</h2>
             <div className="field has-addons">
                 <p className="control">

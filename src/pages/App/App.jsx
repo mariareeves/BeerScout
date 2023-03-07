@@ -18,7 +18,7 @@ export default function App() {
         <>
           <Routes>
             <Route path="/" element={<LandingPage user={user} setUser={setUser} />} />
-            <Route path="/search" element={<SearchPage />} />
+            <Route path="/search" element={<SearchPage user={user} setUser={setUser} />} />
           </Routes>
         </>
         :

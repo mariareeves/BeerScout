@@ -1,3 +1,9 @@
-export default function SearchPage() {
-    return <div>SearchPage</div>
+import TopNavBar from "../../components/TopNavBar/TopNavBar"
+
+export default function SearchPage({ user, setUser }) {
+    return (
+        <div>
+            <TopNavBar user={user} setUser={setUser} />
+        </div>
+    )
 }
