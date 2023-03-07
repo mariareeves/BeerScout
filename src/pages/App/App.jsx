@@ -3,26 +3,28 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service'
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+
 import NavBar from '../../components/NavBar/NavBar'
+import LandingPage from '../LandingPage/LandingPage'
+import SearchPage from '../SearchPage/SearchPage';
+
 
 export default function App() {
-  const [ user, setUser ] = useState(getUser())
+  const [user, setUser] = useState(getUser())
 
   return (
     <main className="App">
       {
-        user ?
+
         <>
-          <NavBar user={user} setUser={setUser} />
+          {/* <NavBar user={user} setUser={setUser} /> */}
           <Routes>
-            <Route path="/orders/new" element={<NewOrderPage />} />
-            <Route path="/orders" element={<OrderHistoryPage />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
         </>
-        :
-        <AuthPage setUser={setUser} />
+
+        // <AuthPage setUser={setUser} />
       }
     </main>
   );
