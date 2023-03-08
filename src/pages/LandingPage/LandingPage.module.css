@@ -1,4 +1,10 @@
-.search-area {
-    display: flex;
-    flex-direction: column;
+.landing {
+    background-color: #342404;
+}
+
+.hero-container,
+.search-bar-container,
+.about-container,
+.footer-container {
+    margin: 0;
 }

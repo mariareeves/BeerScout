@@ -6,11 +6,13 @@ import FooterPage from "../../components/FooterPage/FooterPage"
 import styles from './LandingPage.module.css'
 
 export default function LandingPage({ user, setUser }) {
-    return <div className={styles['search-area']}>
+    return <div className={styles.landing}>
+
         <TopNavBar user={user} setUser={setUser} />
-        <HeroPage />
-        <SearchBar />
-        <AboutPage />
-        <FooterPage />
+
+        <HeroPage className={styles['hero-container']} />
+        <SearchBar className={styles['search-bar-container']} />
+        <AboutPage className={styles['about-container']} />
+        <FooterPage className={styles['footer-container']} />
     </div>
 }
