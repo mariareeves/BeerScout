@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const search = require('../../src/utilities/yelp-api')
+const yelpCtrl = require('../../controllers/api/yelp')
 const ensureLoggedIn = require('../../config/ensureLoggedIn')
 
-router.get('/', search.searchBusinesses)
+router.get('/search', yelpCtrl.searchBreweries)
 
 
 module.exports = router;

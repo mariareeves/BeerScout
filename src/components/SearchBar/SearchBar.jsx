@@ -1,16 +1,24 @@
+import { useEffect } from 'react'
 import styles from './SearchBar.module.css'
+import { searchBusinesses } from '../../utilities/yelp-api'
 
-export default function SearchBar({ location, setLocation }) {
+export default function SearchBar({ location, setLocation, setBreweries }) {
 
     const handleLocationChange = (evt) => {
         console.log(evt.target.value)
         setLocation(evt.target.value)
     }
 
-    function submit(evt) {
-        console.log(location)
-        evt.preventDefault()
-    }
+    const submit = (evt) => {
+        evt.preventDefault();
+        if (location) {
+            searchBusinesses(location).then((data) => {
+                setBreweries(data);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+    };
 
     return (
         <form onSubmit={submit} className={styles['search-bar']}>

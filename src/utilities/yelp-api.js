@@ -2,11 +2,7 @@
 
 const YELP_API_BASE_URL = 'https://api.yelp.com/v3'
 
-module.exports = {
-    searchBusinesses,
-    getBusinessDetails,
-    getBusinessReviews,
-}
+const apiKey = process.env.YELP_API_KEY
 
 async function searchBusinesses(location) {
     const params = {
@@ -18,9 +14,10 @@ async function searchBusinesses(location) {
     const res = await fetch(url, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.YELP_API_KEY}`,
+            'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify(params)
+
     })
 
     const data = await res.json()
@@ -33,7 +30,7 @@ async function getBusinessDetails(businessId) {
     const res = await fetch(url, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.YELP_API_KEY}`,
+            'Authorization': `Bearer ${apiKey}`,
         },
     })
 
@@ -49,10 +46,16 @@ async function getBusinessReviews(businessId) {
     const res = await fetch(url, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.YELP_API_KEY}`,
+            'Authorization': `Bearer ${apiKey}`,
         },
     })
 
     const data = await res.json()
     return data.reviews
+}
+
+module.exports = {
+    searchBusinesses,
+    getBusinessDetails,
+    getBusinessReviews
 }

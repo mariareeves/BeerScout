@@ -9,11 +9,13 @@ import styles from './SearchPage.module.css'
 import { searchBusinesses } from '../../utilities/yelp-api'
 
 
+
 export default function SearchPage({ user, setUser }) {
     const [location, setLocation] = useState("")
     const [breweries, setBreweries] = useState([])
 
     useEffect(() => {
+        console.log(location)
         if (location) {
             searchBusinesses(location).then((data) => {
                 setBreweries(data)
@@ -28,9 +30,9 @@ export default function SearchPage({ user, setUser }) {
     return (
         <div className={styles['search-page']}>
             <TopNavBar user={user} setUser={setUser} />
-            <SearchBar location={location} setLocation={setLocation} />
+            <SearchBar location={location} setLocation={setLocation} setBreweries={setBreweries} />
             <SearchSummary />
-            <BreweriesResults breweries={breweries} setBreweries={setBreweries} />
+            <BreweriesResults breweries={breweries} />
             <FooterPage />
         </div>
     )
