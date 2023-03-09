@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import styles from './SearchBar.module.css'
-import { searchBusinesses } from '../../utilities/yelp-api'
 
 export default function SearchBar({ location, setLocation, setBreweries }) {
 
@@ -12,11 +11,14 @@ export default function SearchBar({ location, setLocation, setBreweries }) {
     const submit = (evt) => {
         evt.preventDefault();
         if (location) {
-            searchBusinesses(location).then((data) => {
-                setBreweries(data);
-            }).catch((error) => {
-                console.log(error);
-            });
+            fetch(`/api/breweries/search?location=${location}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    setBreweries(data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     };
 

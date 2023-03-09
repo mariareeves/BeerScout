@@ -1,5 +1,5 @@
 
-const { searchBusinesses, getBusinessDetails, getBusinessReviews } = require('../../src/utilities/yelp-api')
+const { searchBusinesses, getBusinessDetails, getBusinessReviews } = require('../../config/yelp-api')
 
 
 module.exports = {
@@ -9,12 +9,14 @@ module.exports = {
 }
 
 async function searchBreweries(req, res) {
+
     try {
         const location = req.query.location
         const results = await searchBusinesses(location)
+        console.log(results)
         res.json(results)
     } catch (err) {
-        console.log(er)
+        console.log(err)
 
     }
 }
