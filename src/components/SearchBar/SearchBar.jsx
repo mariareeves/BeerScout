@@ -1,10 +1,12 @@
-import { useEffect } from 'react'
+
+import { useNavigate } from 'react-router-dom'
 import styles from './SearchBar.module.css'
 
-export default function SearchBar({ location, setLocation, setBreweries }) {
+export default function SearchBar({ location, setLocation, setBreweries, onSubmit }) {
 
+    const navigate = useNavigate()
     const handleLocationChange = (evt) => {
-        console.log(evt.target.value)
+        // console.log(evt.target.value)
         setLocation(evt.target.value)
     }
 
@@ -15,6 +17,7 @@ export default function SearchBar({ location, setLocation, setBreweries }) {
                 .then((response) => response.json())
                 .then((data) => {
                     setBreweries(data);
+                    onSubmit()
                 })
                 .catch((error) => {
                     console.log(error);
@@ -46,4 +49,6 @@ export default function SearchBar({ location, setLocation, setBreweries }) {
 
         </form>
     )
+
+
 }

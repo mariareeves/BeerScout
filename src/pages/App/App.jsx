@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service'
 import AuthPage from '../AuthPage/AuthPage';
-
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import LandingPage from '../LandingPage/LandingPage'
 import SearchPage from '../SearchPage/SearchPage';
