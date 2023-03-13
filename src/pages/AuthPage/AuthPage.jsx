@@ -13,9 +13,12 @@ export default function AuthPage({ setUser }) {
 
     return (
 
-        <div className="columns" style={{ height: '100vh', paddingTop: '50px' }}>
+        <div className="columns" style={{ height: '100vh' }}>
             <div className={`column is-three-fifths ${styles['left-side']}`} style={{ height: '100%' }}>
-                <h1 className='title has-text-centered has-text-white'>Welcome to BeerScout, the ultimate destination for beer lovers around the world!</h1>
+                <h1 className='title is-size-1 has-text-centered has-text-white'>
+                    Welcome to BeerScout<br />
+                    <span className="is-size-4">the ultimate destination for beer lovers around the world!</span>
+                </h1>
             </div>
             <div className={`column is-two-fifths ${styles['right-side']}`} style={{ height: '100%' }}>
                 <div className={`form-container ${styles['form-container']}`}>

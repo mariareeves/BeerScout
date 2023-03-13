@@ -1,16 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .left-side {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    font-family: 'Noto Serif', serif;
+    font-weight: 700;
+    position: relative;
+    /* Make the parent element a positioning context */
+}
+
+.left-side::before {
+    /* Use ::before pseudo-element to create an overlay */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url('../../assets/welcome.jpg');
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
-    height: 100%;
+    filter: blur(4px);
+    /* Apply the blur effect to the overlay */
+}
+
+.left-side h1 {
+    z-index: 1;
+    /* Make sure the h1 element is on top of the overlay */
+    color: white;
+    /* Set the color of the text to white */
 }
 
 .right-side {
     background-color: white;
-    height: 100%;
+    height: 100vh;
     display: flex;
-    padding-top: 50px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
