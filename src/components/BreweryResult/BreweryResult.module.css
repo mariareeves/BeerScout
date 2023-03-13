@@ -19,3 +19,7 @@
 .contato-info p {
     font-size: 0.85rem;
 }
+
+:global(.tag).business-tag {
+    margin-right: 4px;
+}

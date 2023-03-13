@@ -1,5 +1,5 @@
 :root {
-    --element-spacing: 1.5rem;
+    --element-spacing: 0;
 }
 
 .logo {
@@ -9,12 +9,17 @@
 
 .top-nav {
     display: flex;
-    padding: 0rem 0;
+    padding: 1rem 0;
     justify-content: space-between;
+    width: 100%;
+    top: 0;
     align-items: center;
     margin: var(--element-spacing);
+    background-color: rgb(150, 46, 15);
+    z-index: 1000;
 
 }
+
 
 .left>* {
     margin-right: var(--element-spacing);
@@ -27,4 +32,9 @@
 
 .right>* {
     margin-left: var(--element-spacing);
+}
+
+.nav-button {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
 }

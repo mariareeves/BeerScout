@@ -1,6 +1,6 @@
-.landing {
+/* .landing {
     background-color: #342404;
-}
+} */
 
 .hero-container,
 .search-bar-container,
@@ -8,3 +8,7 @@
 .footer-container {
     margin: 0;
 }
+
+/* .nav-bar {
+    margin-top: 0;
+} */

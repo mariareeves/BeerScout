@@ -1,3 +1,8 @@
 .footer-page {
-    margin-top: 40px;
+    padding: 1rem 1.5rem;
+    background-color: rgb(150, 46, 15);
+}
+
+.footer-text {
+    color: white;
 }

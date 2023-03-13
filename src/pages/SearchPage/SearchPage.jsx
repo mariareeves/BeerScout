@@ -1,5 +1,6 @@
-import { useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useLocation, useParams } from "react-router-dom"
+
 import TopNavBar from "../../components/TopNavBar/TopNavBar"
 import SearchBar from '../../components/SearchBar/SearchBar'
 // import SearchSummary from "../../components/SearchSummary/SearchSummary"
@@ -10,32 +11,36 @@ import styles from './SearchPage.module.css'
 
 
 export default function SearchPage({ user, setUser }) {
-    const [location, setLocation] = useState(useLocation().search.split("=")[1] || "")
     const [breweries, setBreweries] = useState([])
+    const { searchParams } = useParams()
 
-    const searchBreweries = () => {
-        if (location) {
-            fetch(`/api/breweries/search?location=${location}`)
+    useEffect(function () {
+        async function getBreweries() {
+
+            fetch(`/api/breweries/search?location=${searchParams}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setBreweries(data);
+                    // console.log(data)
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+
         }
-    }
-
-
+        getBreweries()
+        // setBreweries(data)
+    }, [searchParams])
+    // console.log(breweries)
 
     return (
         <div className={styles['search-page']}>
-            <TopNavBar user={user} setUser={setUser} />
-            <SearchBar location={location} setLocation={setLocation} setBreweries={setBreweries} onSubmit={() => searchBreweries()}
-                updateLocation={(newLocation) => setLocation(newLocation)} />
+            {/* <TopNavBar user={user} setUser={setUser} /> */}
+            {/* <SearchBar location={location} setLocation={setLocation} setBreweries={setBreweries} onSubmit={() => searchBreweries()} */}
+            {/* updateLocation={(newLocation) => setLocation(newLocation)} breweries={breweries} /> */}
             {/* <SearchSummary /> */}
             <BreweriesResults breweries={breweries} />
-            <FooterPage />
+            {/* <FooterPage /> */}
         </div>
     )
 }

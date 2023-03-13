@@ -13,8 +13,8 @@ async function searchBreweries(req, res) {
     try {
         const location = req.query.location
         const results = await searchBusinesses(location)
-        // console.log(results)
-        // res.json(results)
+        // console.log(results, 'results')
+        res.json(results)
     } catch (err) {
         console.log(err)
 
