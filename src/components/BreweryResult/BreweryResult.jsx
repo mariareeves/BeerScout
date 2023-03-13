@@ -1,5 +1,7 @@
 import styles from './BreweryResult.module.css'
 import { Link } from 'react-router-dom'
+import BusinessRating from '../BusinessRating/BusinessRating'
+
 export default function BreweryResult({ brewery }) {
     if (!brewery) {
         return (<div />)
@@ -11,7 +13,7 @@ export default function BreweryResult({ brewery }) {
             <Link to={brewery.url}><img className={styles['business-image']} src={brewery.image_url} alt="business" /></Link>
             <div className={styles['business-info']}>
                 <h2 className='subtitle'>{brewery.name}</h2>
-
+                <BusinessRating reviewCount={brewery.review_count} rating={brewery.rating} />
                 <p>{brewery.price}{tags}</p>
             </div>
             <div className={styles['contact-info']}>
