@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react"
-import { useLocation, useParams } from "react-router-dom"
-
-import TopNavBar from "../../components/TopNavBar/TopNavBar"
-import SearchBar from '../../components/SearchBar/SearchBar'
-// import SearchSummary from "../../components/SearchSummary/SearchSummary"
+import { useParams } from "react-router-dom"
+import SearchSummary from "../../components/SearchSummary/SearchSummary"
 import BreweriesResults from '../../components/BreweriesResults/BreweriesResults'
-import FooterPage from '../../components/FooterPage/FooterPage'
 import styles from './SearchPage.module.css'
 
 
 
 export default function SearchPage({ user, setUser }) {
     const [breweries, setBreweries] = useState([])
+    const [businessesCount, setBusinessesCount] = useState(0)
     const { searchParams } = useParams()
 
     useEffect(function () {
@@ -21,6 +18,7 @@ export default function SearchPage({ user, setUser }) {
                 .then((response) => response.json())
                 .then((data) => {
                     setBreweries(data);
+                    setBusinessesCount(data.length)
                     // console.log(data)
                 })
                 .catch((error) => {
@@ -35,12 +33,9 @@ export default function SearchPage({ user, setUser }) {
 
     return (
         <div className={styles['search-page']}>
-            {/* <TopNavBar user={user} setUser={setUser} /> */}
-            {/* <SearchBar location={location} setLocation={setLocation} setBreweries={setBreweries} onSubmit={() => searchBreweries()} */}
-            {/* updateLocation={(newLocation) => setLocation(newLocation)} breweries={breweries} /> */}
-            {/* <SearchSummary /> */}
+
+            <SearchSummary location={searchParams} businessesCount={businessesCount} />
             <BreweriesResults breweries={breweries} />
-            {/* <FooterPage /> */}
         </div>
     )
 }
