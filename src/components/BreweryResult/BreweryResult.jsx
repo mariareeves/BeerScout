@@ -12,7 +12,7 @@ export default function BreweryResult({ brewery }) {
         <div className={styles['brewery-result']}>
             <Link to={brewery.url}><img className={styles['business-image']} src={brewery.image_url} alt="business" /></Link>
             <div className={styles['business-info']}>
-                <h2 className='subtitle'>{brewery.name}</h2>
+                <h2 className='subtitle'><strong>{brewery.name}</strong></h2>
                 <BusinessRating reviewCount={brewery.review_count} rating={brewery.rating} />
                 <p>{brewery.price}{tags}</p>
             </div>

@@ -30,7 +30,7 @@ export default function App() {
           <Routes>
             {/* <Route path="/" element={<LandingPage user={user} setUser={setUser} />} /> */}
             <Route path="/search/:searchParams" element={<SearchPage user={user} setUser={setUser} />} />
-            <Route path="/about" element={<AboutPage />} />
+
           </Routes>
           <FooterPage />
         </>

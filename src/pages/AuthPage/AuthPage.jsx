@@ -15,7 +15,7 @@ export default function AuthPage({ setUser }) {
 
         <div className="columns" style={{ height: '100vh' }}>
             <div className={`column is-three-fifths ${styles['left-side']}`} style={{ height: '100%' }}>
-                <h1 className='title is-size-1 has-text-centered has-text-white'>
+                <h1 className='title  is-spaced is-size-1 has-text-centered has-text-white'>
                     Welcome to BeerScout<br />
                     <span className="is-size-4">the ultimate destination for beer lovers around the world!</span>
                 </h1>
