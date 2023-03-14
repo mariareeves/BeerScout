@@ -31,7 +31,9 @@ export default function TopNavBar({ user, setUser }) {
                     >
                         About
                     </div>
-                    <div className={`button is-white is-small ${styles['saved-button']}`}>Saved</div>
+                    <Link to="/favorites" className={`button is-white is-small ${styles['saved-button']}`}>
+                        Saved
+                    </Link>
                 </div>
                 <div className={styles.right}>
                     <span className="has-text-white" style={{ fontSize: '1.2rem' }}>

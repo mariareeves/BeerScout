@@ -1,8 +1,23 @@
+import { useState } from 'react'
 import styles from './BreweryResult.module.css'
 import { Link } from 'react-router-dom'
 import BusinessRating from '../BusinessRating/BusinessRating'
+import { addToFavorites } from '../../utilities/users-api'
 
 export default function BreweryResult({ brewery }) {
+    const [isFavorite, setIsFavorite] = useState(false)
+
+    async function handleAddToFavorites() {
+        console.log('testing')
+        try {
+            await addToFavorites(brewery.id);
+            setIsFavorite(true);
+        } catch (error) {
+            console.error(error);
+            setIsFavorite(false);
+        }
+    }
+
     if (!brewery) {
         return (<div />)
     }
@@ -19,6 +34,9 @@ export default function BreweryResult({ brewery }) {
             <div className={styles['contact-info']}>
                 <p>{brewery.display_phone}</p>
                 {addressLines}
+            </div>
+            <div className={styles['favorite-button-container']}>
+                <button className={`button ${styles['favorite-button']}`} onClick={handleAddToFavorites}>Add To Favorites</button>
             </div>
 
         </div>

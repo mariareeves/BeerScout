@@ -10,7 +10,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import styles from '../../components/SearchBar/SearchBar.module.css'
 import FooterPage from '../../components/FooterPage/FooterPage';
 import HeroPage from '../../components/HeroPage/HeroPage';
-import AboutPage from '../../components/AboutPage/AboutPage';
+import FavoritesPage from '../FavoritesPage/FavoritesPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -30,7 +30,7 @@ export default function App() {
           <Routes>
             {/* <Route path="/" element={<LandingPage user={user} setUser={setUser} />} /> */}
             <Route path="/search/:searchParams" element={<SearchPage user={user} setUser={setUser} />} />
-
+            <Route path="/favorites" element={<FavoritesPage user={user} setUser={setUser} />} />
           </Routes>
           <FooterPage />
         </>

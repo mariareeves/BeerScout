@@ -53,9 +53,14 @@ export default function SearchPage({ user, setUser }) {
 
     return (
         <div className={styles['search-page']}>
-
             <SearchSummary location={searchParams} businessesCount={businessesCount} />
-            {isLoading ? <Spinner /> : <BreweriesResults breweries={breweries} />}
+            {isLoading ? (
+                <div className={styles['spinner-container']}>
+                    <Spinner />
+                </div>
+            ) : (
+                <BreweriesResults className={styles['breweries-results']} breweries={breweries} />
+            )}
         </div>
     )
 }

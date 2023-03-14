@@ -6,16 +6,21 @@ import { Link } from 'react-router-dom'
 export default function SearchBar() {
     const [location, setLocation] = useState('')
     const navigate = useNavigate()
+
     const handleLocationChange = (evt) => {
         evt.preventDefault()
         // console.log(evt.target.value)
         setLocation(evt.target.value)
     }
+    const handleSubmit = (evt) => {
+        evt.preventDefault()
+        navigate(`/search/${location}`)
+    }
 
 
     return (
         // <form onSubmit={navigate(`search/${location}`)} className={styles['search-bar']}>
-        <div className={styles['search-bar']}>
+        <form onSubmit={handleSubmit} className={styles['search-bar']}>
             <h2 className="subtitle">Discover your favorite Brewery place</h2>
             <div className="field has-addons">
                 <p className="control">
@@ -29,18 +34,17 @@ export default function SearchBar() {
                         type="text"
                         placeholder="Location" value={location} />
                 </p>
-                <Link to={`/search/${location}`}>
-                    <div className={`button is-medium ${styles['search-button']}`}>
-                        <span className="icon">
-                            <i className="fa fa-sharp fa-solid fa-magnifying-glass"></i>
-                        </span>
-                    </div>
-                </Link>
+
+                <button className={`button is-medium ${styles['search-button']}`}>
+                    <span className="icon">
+                        <i className="fa fa-sharp fa-solid fa-magnifying-glass"></i>
+                    </span>
+                </button>
+
             </div>
 
-        </div>
 
-        // </form>
+        </form>
     )
 
 
