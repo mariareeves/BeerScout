@@ -26,11 +26,12 @@ export default function TopNavBar({ user, setUser }) {
                         <img src={logo} className={styles.logo} alt="BeerScout logo" />
                     </Link>
                     <div
-                        className={`button is-white is-small ${styles['about-button ']}`}
+                        className={`button is-white is-small ${styles['about-button']}`}
                         onClick={toggleAboutPage}
                     >
                         About
                     </div>
+                    <div className={`button is-white is-small ${styles['saved-button']}`}>Saved</div>
                 </div>
                 <div className={styles.right}>
                     <span className="has-text-white" style={{ fontSize: '1.2rem' }}>
