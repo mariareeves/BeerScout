@@ -1,16 +1,35 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './BreweryResult.module.css'
 import { Link } from 'react-router-dom'
 import BusinessRating from '../BusinessRating/BusinessRating'
 import { addToFavorites } from '../../utilities/users-api'
+import { getSavedBreweries } from '../../utilities/users-api'
 
-export default function BreweryResult({ brewery }) {
+export default function BreweryResult({ brewery, user }) {
     const [isFavorite, setIsFavorite] = useState(false)
+    const [savedBreweries, setSavedBreweries] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const data = await getSavedBreweries();
+            setSavedBreweries(data);
+        }
+
+        fetchData();
+    }, []);
 
     async function handleAddToFavorites() {
-        console.log('testing')
         try {
-            await addToFavorites(brewery.id);
+            await addToFavorites(brewery.id, {
+                yelpId: brewery.id,
+                imageUrl: brewery.image_url,
+                name: brewery.name,
+                address: brewery.location.display_address,
+                rating: brewery.rating,
+                reviewCount: brewery.review_count,
+                user: user._id
+
+            });
             setIsFavorite(true);
         } catch (error) {
             console.error(error);
@@ -36,7 +55,15 @@ export default function BreweryResult({ brewery }) {
                 {addressLines}
             </div>
             <div className={styles['favorite-button-container']}>
-                <button className={`button ${styles['favorite-button']}`} onClick={handleAddToFavorites}>Add To Favorites</button>
+                {savedBreweries.some(savedBrewery => savedBrewery.yelpId === brewery.id) ? (
+                    <button className={`button is-rounded ${styles['favorite-button']}`} disabled>
+                        Added to Favorites
+                    </button>
+                ) : (
+                    <button className={`button is-rounded ${styles['favorite-button']}`} onClick={handleAddToFavorites}>
+                        Add to Favorites
+                    </button>
+                )}
             </div>
 
         </div>

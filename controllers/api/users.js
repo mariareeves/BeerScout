@@ -2,12 +2,14 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const User = require('../../models/user')
 const mongoose = require('mongoose');
+const Brewery = require('../../models/brewery');
 
 module.exports = {
     create,
     login,
     checkToken,
     addToFavorites,
+    showFavorites
 }
 
 async function create(req, res) {
@@ -38,19 +40,32 @@ function checkToken(req, res) {
     res.json(req.exp)
 }
 
+
 async function addToFavorites(req, res) {
+    const brewery = new Brewery({
+        yelpId: req.body.yelpId,
+        imageUrl: req.body.imageUrl,
+        name: req.body.name,
+        address: req.body.address.join(', '),
+        rating: req.body.rating,
+        reviewCount: req.body.reviewCount,
+        user: req.body.user
+    })
     try {
-        const user = await User.findById(req.user._id);
-        if (!mongoose.Types.ObjectId.isValid(req.body.brewery)) {
-            return res.status(400).json({ message: 'Invalid brewery id.' });
-        }
-        user.favorites.push(req.body.brewery);
-        await user.save();
-        res.status(200).json({ message: 'Brewery added to favorites.' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Something went wrong.' });
+
+        const saveFavorite = await brewery.save();
+        res.json(saveFavorite);
+    } catch (err) {
+        res.status(400).json(err);
     }
+}
+
+async function showFavorites(req, res) {
+
+    const userId = req.user._id;
+
+    const breweries = await Brewery.find({ user: userId });
+    res.json(breweries);
 }
 
 

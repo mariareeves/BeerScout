@@ -16,7 +16,9 @@ export function checkToken() {
 }
 
 
-export async function addToFavorites(breweryId) {
+export async function addToFavorites(breweryId, breweryData) {
+    console.log(breweryId)
+    console.log(breweryData)
     try {
         const response = await fetch('/api/users/favorites', {
             method: 'POST',
@@ -24,7 +26,7 @@ export async function addToFavorites(breweryId) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({ brewery: breweryId })
+            body: JSON.stringify(breweryData)
         })
 
         if (!response.ok) {
@@ -43,6 +45,17 @@ export async function addToFavorites(breweryId) {
     }
 }
 export async function getSavedBreweries() {
-    const res = await sendRequest('/api/users/favorites', 'GET');
-    return res.favorites;
+    return sendRequest('/api/users/favorites', 'GET')
 }
+
+// export async function getSavedBreweries(userId) {
+//     try {
+//         const response = await fetch(`/api/users/${userId}/favorites`);
+//         const data = await response.json();
+//         console.log(data); // make sure data is being received correctly
+//         return data;
+//     } catch (error) {
+//         console.error(error);
+//         return undefined; // make sure an error doesn't cause undefined to be returned
+//     }
+// }

@@ -17,7 +17,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Brewery' }],
+
 }, {
     timestamps: true,
     toJSON: {

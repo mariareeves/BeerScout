@@ -26,23 +26,23 @@ export default function TopNavBar({ user, setUser }) {
                         <img src={logo} className={styles.logo} alt="BeerScout logo" />
                     </Link>
                     <div
-                        className={`button is-white is-small ${styles['about-button']}`}
+                        className={`button is-outlined is-rounded is-white is-normal ${styles['about-button']}`}
                         onClick={toggleAboutPage}
                     >
                         About
                     </div>
-                    <Link to="/favorites" className={`button is-white is-small ${styles['saved-button']}`}>
+                    <Link to="/favorites" className={`button is-outlined is-rounded is-white is-normal ${styles['saved-button']}`}>
                         Saved
                     </Link>
                 </div>
                 <div className={styles.right}>
-                    <span className="has-text-white" style={{ fontSize: '1.2rem' }}>
+                    <span className="has-text-white is-size-4">
                         {' '}
                         Welcome, {user.name}{' '}
                     </span>
                     <Link
                         to=""
-                        className={`button is-white is-small ${styles['nav-button']}`}
+                        className={`button is-rounded is-white is-normal ${styles['nav-button']}`}
                         onClick={handleLogOut}
                     >
                         Log Out

@@ -6,7 +6,7 @@ import styles from './SearchPage.module.css'
 import Spinner from "../../components/Spinner/Spinner"
 
 
-export default function SearchPage({ user, setUser }) {
+export default function SearchPage({ user, setUser, savedBreweries }) {
     const [breweries, setBreweries] = useState([])
     const [businessesCount, setBusinessesCount] = useState(0)
     const [isLoading, setIsLoading] = useState(false);
@@ -31,25 +31,6 @@ export default function SearchPage({ user, setUser }) {
 
         getBreweries();
     }, [searchParams]);
-    // useEffect(function () {
-    //     async function getBreweries() {
-
-    //         fetch(`/api/breweries/search?location=${searchParams}`)
-    //             .then((response) => response.json())
-    //             .then((data) => {
-    //                 setBreweries(data);
-    //                 setBusinessesCount(data.length)
-    //                 // console.log(data)
-    //             })
-    //             .catch((error) => {
-    //                 console.log(error);
-    //             });
-
-    //     }
-    //     getBreweries()
-    //     // setBreweries(data)
-    // }, [searchParams])
-    // // console.log(breweries)
 
     return (
         <div className={styles['search-page']}>
@@ -59,7 +40,7 @@ export default function SearchPage({ user, setUser }) {
                     <Spinner />
                 </div>
             ) : (
-                <BreweriesResults className={styles['breweries-results']} breweries={breweries} />
+                <BreweriesResults user={user} className={styles['breweries-results']} breweries={breweries} savedBreweries={savedBreweries} />
             )}
         </div>
     )
